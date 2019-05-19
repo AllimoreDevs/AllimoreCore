@@ -15,7 +15,4 @@ public class ConversionUtils {
     public static EntityType ConvertStringtoEntityType(String string){
         return EntityType.valueOf(string.toUpperCase());
     }
-    public static Material ConvertStringToMaterial(String string){
-        return Material.valueOf(string.toUpperCase());
-    }
 }

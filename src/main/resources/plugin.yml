@@ -1,0 +1,5 @@
+name: AllimoreCore
+version: ${project.version}
+main: taurasi.marc.allimorecore.AllimoreCore
+authors: [TodAtsu]
+description: Utility Library for Allimore plugins

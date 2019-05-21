@@ -51,4 +51,42 @@ public class InventoryUtils {
             }
         }
     }
+
+    public static int GetAmountOfFuzzyMaterialFromInventory(FuzzyMaterial materials, Inventory inv){
+        int runningTotal = 0;
+
+        for(int i = 0; i < inv.getSize(); i++){
+            ItemStack item = inv.getItem(i);
+            if(item == null) continue;
+            if(materials.IsAcceptable(item.getType())){
+                runningTotal += item.getAmount();
+            }
+        }
+
+        return runningTotal;
+    }
+    public static void RemoveQuantityOfFuzzyMaterial(Inventory inventory, FuzzyMaterial targetMaterials, int targetAmount){
+        int removedAmount = 0;
+        for(int i = 0; i < inventory.getSize(); i++){
+            int remainingAmount = targetAmount - removedAmount;
+
+            ItemStack item = inventory.getItem(i);
+            if( item == null || !(targetMaterials.IsAcceptable(item.getType())) ) continue;
+
+            if(item.getAmount() > remainingAmount ) {
+                item.setAmount( item.getAmount() - remainingAmount );
+                return;
+            }
+
+            if(item.getAmount() == remainingAmount) {
+                inventory.removeItem(item);
+                return;
+            }
+
+            if(item.getAmount() < remainingAmount){
+                inventory.removeItem(item);
+                removedAmount += item.getAmount();
+            }
+        }
+    }
 }

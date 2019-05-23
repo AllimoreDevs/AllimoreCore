@@ -1,27 +1,26 @@
 package taurasi.marc.allimorecore;
 
+import org.bukkit.ChatColor;
+
 import java.util.ArrayList;
 
 public class StringUtils {
-    public static ArrayList<String> WrapLore(String string, int charactersPerLine, String appendString){
+    public static ArrayList<String> WrapLoreString(String string, int charactersPerLine, ChatColor prefixColor){
         ArrayList<String> loreStrings = new ArrayList<>();
         char[] chars = string.toCharArray();
-        int charsOnLine = 0;
-
+        int charsOnCurrentLine = 0;
         for(int i = 0; i < chars.length; i++){
-            if( ((chars.length - i) + charsOnLine <= charactersPerLine) ){
-                loreStrings.add(appendString + string.substring(i - charsOnLine));
-                break;
-            }
 
-            if( (chars[i] == ' ') && (charsOnLine >= charactersPerLine) ){
-                loreStrings.add(appendString + string.substring(i - charsOnLine, i));
-                charsOnLine = 0;
-            }else{
-                charsOnLine ++;
+            if( Character.isWhitespace(chars[i]) && charsOnCurrentLine >= charactersPerLine){
+                loreStrings.add(prefixColor + string.substring(i - charsOnCurrentLine, i));
+                charsOnCurrentLine = 0;
+                continue;
             }
+            charsOnCurrentLine ++;
         }
-
+        if(charsOnCurrentLine != 0){
+            loreStrings.add(prefixColor + string.substring(string.length()-charsOnCurrentLine));
+        }
         return loreStrings;
     }
 

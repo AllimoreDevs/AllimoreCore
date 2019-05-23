@@ -94,10 +94,10 @@ public abstract class InventoryGUI implements InventoryObserver {
     }
 
     public ArrayList<String> FormatLoreFromString(String string){
-        return StringUtils.WrapLore(string, characterPerLoreLine, loreColor.toString());
+        return StringUtils.WrapLoreString(string, characterPerLoreLine, loreColor);
     }
     public ArrayList<String> FormatLoreFromString(String string, ChatColor loreColor){
-        return StringUtils.WrapLore(string, characterPerLoreLine, loreColor.toString());
+        return StringUtils.WrapLoreString(string, characterPerLoreLine, loreColor);
     }
 
     public void OnInventoryClose(InventoryCloseEvent event){

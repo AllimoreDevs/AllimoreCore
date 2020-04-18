@@ -3,4 +3,5 @@ version: ${project.version}
 main: taurasi.marc.allimorecore.AllimoreCore
 authors: [TodAtsu]
 description: Utility Library for Allimore plugins
+depend: [Vault]
 api-version: 1.14

@@ -8,6 +8,7 @@ import java.util.logging.Level;
 public class AllimoreLogger {
     private static ChatColor ERROR_COLOR = ChatColor.RED;
     private static ChatColor INFO_COLOR = ChatColor.YELLOW;
+    private static String ERROR_PREFIX = "[Error]";
 
     public static void LogInfo(String message, Player player){
         player.sendMessage(String.format("%s%s", INFO_COLOR, message));
@@ -18,7 +19,7 @@ public class AllimoreLogger {
     }
 
     public static void LogError(String message, Player player){
-        player.sendMessage(String.format("%s%s", ERROR_COLOR, message));
+        player.sendMessage(String.format("%s%s%s", ERROR_COLOR, ERROR_PREFIX, message));
         LogError(message);
     }
     public static void LogError(String message){
